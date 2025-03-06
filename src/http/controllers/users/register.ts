@@ -1,11 +1,7 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
-import { prisma } from '@/lib/prisma'
 import { z } from 'zod'
-import { hash } from 'bcryptjs'
-import { RegisterUseCase } from '../services/register'
-import { PrismaUsersRepository } from '@/repositories/prisma/prisma-users-repositoriy'
-import { UserAlredyExistsError } from '../services/errors/user-alredy-exits-error'
-import { makeRegisterUseCase } from '../services/factories/make-register-use-case'
+import { UserAlredyExistsError } from '../../services/errors/user-alredy-exits-error'
+import { makeRegisterUseCase } from '../../services/factories/make-register-use-case'
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
   const registerbOdySchema = z.object({
