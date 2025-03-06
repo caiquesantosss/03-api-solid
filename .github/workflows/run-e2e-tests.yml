@@ -5,28 +5,28 @@ on: [pull_request]
 jobs: 
   run-e2e-tests: 
     name: Run E2E Test
-    runs-on: Ubuntu-latest
+    runs-on: ubuntu-latest  # ✅ Corrigido aqui
 
     services: 
       postgres: 
-      image: bitnami/postgresql
-      ports: 
-        - "5432:5432"
-      env: 
-        POSTGRESQL_USER: docker
-        POSTGRESQL_PASSWORD: docker
-        POSTGRESQL_DATABASE: apisolid
+        image: bitnami/postgresql  # ✅ Corrigido indentação aqui
+        ports: 
+          - "5432:5432"
+        env: 
+          POSTGRESQL_USER: docker
+          POSTGRESQL_PASSWORD: docker
+          POSTGRESQL_DATABASE: apisolid
 
     steps: 
-      -users: actions/checkout@v3
-      -users: actions/setup-node@v3
-      with: 
-        node-version: 22
-        cache: 'npm'
+      - uses: actions/checkout@v3  # ✅ Corrigido "users" para "uses"
+      - uses: actions/setup-node@v3  
+        with: 
+          node-version: 22
+          cache: 'npm'
 
-    - run: npm ci
+      - run: npm ci
 
-    - run: npm run test:e2e
-      env:
-        JWT_SECRET: testing-secret
-        DATABASE_URL: "postgresql://docker:docker@localhost:5432/apisolid?schema=public"   
+      - run: npm run test:e2e
+        env:
+          JWT_SECRET: testing-secret
+          DATABASE_URL: "postgresql://docker:docker@localhost:5432/apisolid?schema=public"
