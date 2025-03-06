@@ -7,7 +7,7 @@
     "dev": "tsx watch src/server.ts",
     "build": "tsup src --out-dir build",
     "start": "node build/server.js",
-    "test": "vitest run --dir src/http/sevices",
+    "test": "vitest run --dir src/http/services",
     "test:watch": "vitest --dir src/http/services --watch",
     "test:create-prisma-environment": "npm link ./prisma/vitest-environment-prisma",
     "test:install-prisma-environment": "npm link vitest-environment-prisma",
